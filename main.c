@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
     if (listen(server_sd, MAXPENDING) < 0)
         die_with_error("listen() failed");
 
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while(1) /* Run forever */
     {
         /* Set the size of the in and out parameter */
@@ -78,6 +80,7 @@ int main(int argc, char *argv[])
             close(client_sd);
         }
     }
+    #pragma clang diagnostic pop
 }
 
 
