@@ -43,5 +43,5 @@ void handle_client(int client_socket) {
 
     debug_message("Closing child.");
     close(client_socket);
-    exit(1);
+    exit(EXIT_SUCCESS);
 }
