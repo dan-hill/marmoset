@@ -4,7 +4,6 @@
 #include <stdlib.h>     /* atoi(), exit() */
 #include <string.h>     /* memset() */
 #include <unistd.h>     /* close() */
-#include <fcntl.h>
 
 #include "request.h"
 #include "die_with_error.h"
