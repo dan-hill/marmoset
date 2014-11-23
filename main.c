@@ -4,7 +4,6 @@
 #include <stdlib.h>     /* atoi(), exit() */
 #include <string.h>     /* memset() */
 #include <unistd.h>     /* close() */
-#include <fcntl.h>
 
 #include "request.h"
 #include "die_with_error.h"
@@ -15,8 +14,7 @@
 #define DEBUGMSGS 1
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     int server_sd;                          /* Socket descriptor for server */
     int client_sd;                          /* Socket descriptor for client */
     struct sockaddr_in server_address;      /* Server address structure*/
@@ -30,7 +28,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    server_port = atoi(argv[1]);       /* The server port to be opened */
+    server_port = (unsigned short) atoi(argv[1]);       /* The server port to be opened */
 
     /* Create socket for incoming connections */
     debug_message("Creating socket for incomming connections...");
@@ -40,9 +38,9 @@ int main(int argc, char *argv[])
     /* Construct local address structure */
     debug_message("Constructing local address structure...");
     memset(&server_address, 0, sizeof(server_address));     /* Clear the server_address structure */
-    server_address.sin_family       = AF_INET;              /* Internet protocol family */
-    server_address.sin_addr.s_addr  = htonl(INADDR_ANY);    /* Any incoming interface */
-    server_address.sin_port         = htons(server_port);   /* Local port */
+    server_address.sin_family = AF_INET;              /* Internet protocol family */
+    server_address.sin_addr.s_addr = htonl(INADDR_ANY);    /* Any incoming interface */
+    server_address.sin_port = htons(server_port);   /* Local port */
 
     /* Bind to the local address */
     debug_message("Binding socket to the local address...");
@@ -50,14 +48,16 @@ int main(int argc, char *argv[])
         die_with_error("bind() failed");
 
     /* Mark the socket so it will listen for incoming connections */
-    char *msg_pa = malloc(snprintf(NULL, 0, "%s %hu", "Listening to port ", server_port) + 1);
+    char *msg_pa = malloc((size_t) (snprintf(NULL, 0, "%s %hu", "Listening to port ", server_port) + 1));
     sprintf(msg_pa, "%s %hu", "Listening to port ", server_port);
     debug_message(msg_pa);
 
     if (listen(server_sd, MAXPENDING) < 0)
         die_with_error("listen() failed");
 
-    while(1) /* Run forever */
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wmissing-noreturn"
+    while (1) /* Run forever */
     {
         /* Set the size of the in and out parameter */
         client_address_length = sizeof(client_address);
@@ -79,6 +79,7 @@ int main(int argc, char *argv[])
             close(client_sd);
         }
     }
+    #pragma clang diagnostic pop
 }
 
 
