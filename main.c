@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    server_port = atoi(argv[1]);       /* The server port to be opened */
+    server_port = (unsigned short) atoi(argv[1]);       /* The server port to be opened */
 
     /* Create socket for incoming connections */
     debug_message("Creating socket for incomming connections...");
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         die_with_error("bind() failed");
 
     /* Mark the socket so it will listen for incoming connections */
-    char *msg_pa = malloc(snprintf(NULL, 0, "%s %hu", "Listening to port ", server_port) + 1);
+    char *msg_pa = malloc((size_t) (snprintf(NULL, 0, "%s %hu", "Listening to port ", server_port) + 1));
     sprintf(msg_pa, "%s %hu", "Listening to port ", server_port);
     debug_message(msg_pa);
 
