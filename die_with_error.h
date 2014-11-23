@@ -1,0 +1,1 @@
+void die_with_error(char *error_message);
