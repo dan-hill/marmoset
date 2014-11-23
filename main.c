@@ -15,6 +15,8 @@
 
 
 int main(int argc, char *argv[]) {
+    debug_message("Starting server setup.");
+
     int server_sd;                          /* Socket descriptor for server */
     int client_sd;                          /* Socket descriptor for client */
     struct sockaddr_in server_address;      /* Server address structure*/
@@ -55,6 +57,9 @@ int main(int argc, char *argv[]) {
     if (listen(server_sd, MAXPENDING) < 0)
         die_with_error("listen() failed");
 
+    debug_message("End server setup.\n");
+
+    debug_message("Start main application loop.");
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
     while (1) /* Run forever */
@@ -64,20 +69,19 @@ int main(int argc, char *argv[]) {
 
         /* Wait for a client to connect */
         debug_message("Listening for new client connections...");
-        if ((client_sd = accept(server_sd, (struct sockaddr *) &client_address,
-                &client_address_length)) < 0)
+        if ((client_sd = accept(server_sd, (struct sockaddr *) &client_address, &client_address_length)) < 0)
             die_with_error("accept() failed");
 
         /* deal with the client connection request */
         int pid = fork();
         if (pid == 0) {
-            debug_message("Handling a client...");
+            debug_message("Handling request in child process.");
             handle_client(client_sd);
         }
-        else {
-            debug_message("Closing client connection...");
-            close(client_sd);
-        }
+
+        debug_message("Closing client socket in main thread.");
+        close(client_sd);
+
     }
     #pragma clang diagnostic pop
 }
