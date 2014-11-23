@@ -9,8 +9,7 @@
 
 #define RCVBUFSIZE 3000
 
-void handle_client(int client_socket)
-{
+void handle_client(int client_socket) {
 
     char recieve_buffer[RCVBUFSIZE];        /* Buffer for recieveed message */
     char send_buffer[RCVBUFSIZE];           /* Buffer for outgoing message */
@@ -27,7 +26,7 @@ void handle_client(int client_socket)
 
     /* Print the client's message to the terminal */
     int i = 0;
-    while(recieve_buffer[i] != '\r') {
+    while (recieve_buffer[i] != '\r') {
         printf("%c", recieve_buffer[i]);
         i++;
     }
@@ -39,7 +38,7 @@ void handle_client(int client_socket)
     strcpy(send_buffer, "HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n\nI am responding!\n");
 
     /* Sent the send buffer to the client */
-    if (send(client_socket, send_buffer, RCVBUFSIZE, 0) < 0 )
+    if (send(client_socket, send_buffer, RCVBUFSIZE, 0) < 0)
         die_with_error("send() failed");
 
     debug_message("Closing child.");

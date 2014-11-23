@@ -14,8 +14,7 @@
 #define DEBUGMSGS 1
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     int server_sd;                          /* Socket descriptor for server */
     int client_sd;                          /* Socket descriptor for client */
     struct sockaddr_in server_address;      /* Server address structure*/
@@ -39,9 +38,9 @@ int main(int argc, char *argv[])
     /* Construct local address structure */
     debug_message("Constructing local address structure...");
     memset(&server_address, 0, sizeof(server_address));     /* Clear the server_address structure */
-    server_address.sin_family       = AF_INET;              /* Internet protocol family */
-    server_address.sin_addr.s_addr  = htonl(INADDR_ANY);    /* Any incoming interface */
-    server_address.sin_port         = htons(server_port);   /* Local port */
+    server_address.sin_family = AF_INET;              /* Internet protocol family */
+    server_address.sin_addr.s_addr = htonl(INADDR_ANY);    /* Any incoming interface */
+    server_address.sin_port = htons(server_port);   /* Local port */
 
     /* Bind to the local address */
     debug_message("Binding socket to the local address...");
@@ -58,7 +57,7 @@ int main(int argc, char *argv[])
 
     #pragma clang diagnostic push
     #pragma clang diagnostic ignored "-Wmissing-noreturn"
-    while(1) /* Run forever */
+    while (1) /* Run forever */
     {
         /* Set the size of the in and out parameter */
         client_address_length = sizeof(client_address);
