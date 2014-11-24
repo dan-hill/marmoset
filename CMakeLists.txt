@@ -6,6 +6,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "~/Development/marmoset/bin/")
 set(CMAKE_C_COMPILER gcc)
 
 set(PROJECT_HEADERS debug.h die_with_error.h http_request.h request.h)
-set(PROJECT_SOURCES debug.c die_with_error.c request.c)
+set(PROJECT_SOURCES debug.c die_with_error.c http_request.c request.c)
 
 add_executable(marmoset main.c ${PROJECT_HEADERS} ${PROJECT_SOURCES})
