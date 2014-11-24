@@ -6,6 +6,7 @@
 #include "request.h"
 #include "die_with_error.h"
 #include "debug.h"
+#include "http_request.h"
 
 #define RCVBUFSIZE 3000
 
@@ -25,13 +26,8 @@ void handle_client(int client_socket) {
         die_with_error("recv() failed");
 
     /* Print the client's message to the terminal */
-    int i = 0;
-    while (recieve_buffer[i] != '\r') {
-        printf("%c", recieve_buffer[i]);
-        i++;
-    }
-
-
+    struct http_request req = parse_request(recieve_buffer);
+    printf("%i", req.type);
     /* Clear the send buffer */
     memset(send_buffer, 0, sizeof(send_buffer));
 
