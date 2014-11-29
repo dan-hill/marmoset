@@ -27,7 +27,17 @@ void handle_client(int client_socket) {
 
     /* Print the client's message to the terminal */
     struct http_request req = parse_request(recieve_buffer);
-    printf("%i", req.type);
+    printf("%i\n", req.type);
+    size_t i = 0;
+    while(i < req.path.length){
+        printf("%c", *(req.path.location + i));
+        i++;
+    }
+    printf("\n");
+    printf("%i\n", req.HTTP_version);
+
+
+
     /* Clear the send buffer */
     memset(send_buffer, 0, sizeof(send_buffer));
 
@@ -38,6 +48,7 @@ void handle_client(int client_socket) {
         die_with_error("send() failed");
 
     debug_message("Closing child.");
+
     close(client_socket);
     exit(1);
 }
