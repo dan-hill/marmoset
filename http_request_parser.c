@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "http_request.h"
+#include "http_request_parser.h"
 
 
-int store_header_field(struct http_request* req, char* key, char* value){
+int store_header_field(struct http_request_parser * req, char* key, char* value){
     if(strcmp(key, "User-Agent") == 0){
         req->user_agent = value;
         return 1;
@@ -64,7 +64,7 @@ int store_header_field(struct http_request* req, char* key, char* value){
     return 0;
 }
 
-void parse_request(struct http_request* req, char *request){
+void parse_request(struct http_request_parser * req, char *request){
 
     char* runner = request;
     char* token;

@@ -5,12 +5,12 @@
 #include <string.h>     /* memset() */
 #include <unistd.h>     /* close() */
 
-#include "request.h"
+#include "request_handler.h"
 #include "die_with_error.h"
 #include "debug.h"
 
 #define MAXPENDING 5
-#define RCVBUFSIZE 3000
+#define REQBUFSIZE 3000
 #define DEBUGMSGS 1
 
 
