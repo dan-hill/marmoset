@@ -1,105 +1,109 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "http_request.h"
 
-int substrcmp(char* str1, char* str2, int lng){
-    int i;
-    for(i = 0; i < lng; i++){
-        if (*(str1 + i) != *(str2 + i)){
-            return 0;
-        }
-    }
-    return 1;
-}
 
-uint8_t http_request_type(char *request){
-
-    if(substrcmp(request, "GET", (int)strcspn(request, " ")) == 1){
-        return REQ_TYPE_GET;
+int store_header_field(struct http_request* req, char* key, char* value){
+    if(strcmp(key, "User-Agent") == 0){
+        req->user_agent = value;
+        return 1;
     }
 
-    if(substrcmp(request, "POST", (int)strcspn(request, " ")) == 1){
-        return REQ_TYPE_POST;
-    }
-}
-
-struct substr http_request_path(char *request){
-    char* front = request + strcspn(request, " ") + 1;
-
-    size_t i = 0;
-    while (*(front + i) != ' '){
-        i++;
+    if(strcmp(key, "Host") == 0){
+        req->host = value;
+        return 1;
     }
 
-    struct substr path;
-    path.location = front;
-    path.length = i;
+    if(strcmp(key, "Accept") == 0){
+        req->accept = value;
+        return 1;
+    }
 
-    return path;
-}
-struct substr http_request_body(char* request){
-    size_t i = 0;
-    size_t line_size = 0;
-    while (*(request + i) != '\0'){
-        while(*(request + i) != '\r' && *(request + i) != '\n'){
-            i++;
-            line_size++;
+    if(strcmp(key, "Content-Length") == 0){
+        req->content_length = (size_t)atoi(value);
+        return 1;
+    }
+
+    if(strcmp(key, "Path") == 0){
+        req->path = value;
+        return 1;
+    }
+
+    if(strcmp(key, "Type") == 0){
+
+        if(strcmp(value, "GET") == 0){
+            printf("%s", value);
+            req->type = REQ_TYPE_GET;
+            return 1;
         }
 
-        if(line_size == 0){
-            struct substr body;
-            body.location = request + i;
-            body.length = sizeof(request) - i;
-            return body;
+        if(strcmp(value, "POST") == 0){
+            req->type = REQ_TYPE_POST;
+            return 1;
         }
 
-        i++;
-        line_size = 0;
-    }
-}
-
-size_t http_request_content_length(char* request){
-    size_t i = 0;
-    size_t lgn = 0;
-    while(*(request+i) != '\0'){
-        while(*(request + i) != '\r' && *(request + i) != '\n'){
-            i++;
-        }
-        printf("new line");
-        if(substrcmp(request + i + 3, "Content-Length:", 15) == 0){
-            while(*(request + i + 18) != '\r'){
-                i++;
-                lgn++;
-            }
+        if(strcmp(value, "PUT") == 0){
+            req->type = REQ_TYPE_PUT;
+            return 1;
         }
 
-        i++;
+        if(strcmp(value, "DELETE") == 0){
+            req->type = REQ_TYPE_DELETE;
+            return 1;
+        }
+        /* TODO Add the rest of the less common request types */
 
+        return 0;
     }
 
-    char s[lgn];
-    size_t k;
-    for(k = 0; k < lgn; k++){
-        s[k] = *(request+i-5-lgn);
-        i++;
+    if(strcmp(key, "Body") == 0){
+        req->body = value;
+        return 1;
+    }
+
+    return 0;
+}
+
+void parse_request(struct http_request* req, char *request){
+
+    char* runner = request;
+    char* token;
+    char* key;
+    char* value;
+
+    while(runner != NULL){
+        token = strsep(&runner, "\r");
+        if(token == request){
+
+
+            char* tmp = token;
+            token = strchr(token, ' ') + 1;
+            *(token - 1) = '\0';
+            store_header_field(req, "Type", tmp);
+
+            tmp = token;
+            token = strchr(token, ' ') + 1;
+            *(token - 1) = '\0';
+            store_header_field(req, "Path", tmp);
+
+            store_header_field(req, "HTTP-Version", token);
+            continue;
+        }
+
+        if(*(token) == '\n'){
+            token = token + 1;
+        }
+
+        if(strlen(token) == 0){
+            token = strsep(&runner, "\r");
+            store_header_field(req, "Body", token);
+            break;
+        }
+
+        key = token;
+        value = strchr(token, ':') + 2;
+        *(value - 2) = '\0';
+        store_header_field(req, key, value);
     }
 }
 
-uint8_t http_version(char* request){
-    char* front = request + strcspn(request + strcspn(request, " "), " ");
-
-    if(substrcmp(front, "HTTP/1.1", 8) == 1){
-        return REQ_HTTP_VERSION_1_1;
-    }
-}
-
-struct http_request parse_request(char *request){
-    struct http_request req;
-
-    req.type = http_request_type(request);
-    req.path = http_request_path(request);
-    req.HTTP_version = http_version(request);
-    req.content_length = http_request_content_length(request);
-    req.body = http_request_body(request);
-
-    return req;
-}

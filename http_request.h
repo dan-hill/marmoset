@@ -1,25 +1,35 @@
 #include <string.h>
 #include <stdint.h>
+#include "string_utilities.h"
 
+/* Request types */
 #define REQ_TYPE_GET 0
 #define REQ_TYPE_POST 1
+#define REQ_TYPE_OPTIONS 2
+#define REQ_TYPE_HEAD 3
+#define REQ_TYPE_PUT 4
+#define REQ_TYPE_DELETE 5
+#define REQ_TYPE_TRACE 6
+#define REQ_TYPE_CONNECT 7
 
+/* HTTP versions */
 #define REQ_HTTP_VERSION_1_1 0
 
-struct substr{
-    char* location;
-    size_t length;
-};
+/* MIME Types */
+#define MIME_TYPE_APPLICATION_JSON 0
+#define MIME_TYPE_APPLICATION_X_WWW_FORM_URLENCODED 1
 
 struct http_request{
     uint8_t type;
-    struct substr path;
+    char* path;
     int HTTP_version;
-    int host;
+    char* host;
     size_t content_length;
-    struct substr body;
+    char* body;
+    char* user_agent;
+    char* accept;
+
 };
 
-uint8_t http_request_type(char *request);
-struct http_request parse_request(char *request);
+void parse_request(struct http_request* req, char *request);
 

@@ -26,16 +26,10 @@ void handle_client(int client_socket) {
         die_with_error("recv() failed");
 
     /* Print the client's message to the terminal */
-    struct http_request req = parse_request(recieve_buffer);
-    printf("%i\n", req.type);
-    size_t i = 0;
-    while(i < req.path.length){
-        printf("%c", *(req.path.location + i));
-        i++;
-    }
-    printf("\n");
-    printf("%i\n", req.HTTP_version);
+    struct http_request req;
+    parse_request(&req, recieve_buffer);
 
+    printf("Type: %i\nPath: %s\nHTTP Version: %i\nContent Length: %i\nBody: %s\n", req.type, req.path, req.HTTP_version, (int)req.content_length, req.body);
 
 
     /* Clear the send buffer */
