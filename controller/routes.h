@@ -7,6 +7,6 @@
 
 
 
-void router(struct http_request_parser* req, struct http_response* res);
+void router(int* client_sd, struct http_request_parser* req, struct http_response* res);
 
 #endif

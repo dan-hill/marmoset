@@ -1,3 +1,8 @@
+#ifndef HTTP_REQUEST_H
+#define HTTP_REQUEST_H
+
+#include <stdint.h>
+
 struct http_response {
     char* access_control_allow_origin;
     uint8_t accept_ranges;
@@ -39,3 +44,5 @@ struct http_response {
 
     char* content;
 };
+
+#endif

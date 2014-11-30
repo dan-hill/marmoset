@@ -11,7 +11,7 @@
 #include "error/die_with_error.h"
 #include "debug/debug.h"
 
-#define REQBUFSIZE 3000
+#define REQBUFSIZE 30000
 
 void handle_client(int client_socket);
 

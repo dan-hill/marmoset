@@ -11,11 +11,12 @@
 #include "request/request_handler.h"
 
 #define MAXPENDING 5
-#define REQBUFSIZE 3000
+#define REQBUFSIZE 30000
 #define DEBUGMSGS 1
 
 
 int main(int argc, char *argv[]) {
+
     debug_message("Starting server setup.");
 
     int server_sd;                          /* Socket descriptor for server */
