@@ -2,12 +2,11 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
-#include "request_handler.h"
-#include "die_with_error.h"
-#include "debug.h"
 
-#include "response_handler.h"
+#include "response/response_handler.h"
+#include "request/request_handler.h"
+#include "error/die_with_error.h"
+#include "debug/debug.h"
 
 #define REQBUFSIZE 3000
 

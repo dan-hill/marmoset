@@ -5,9 +5,9 @@
 #include <string.h>     /* memset() */
 #include <unistd.h>     /* close() */
 
-#include "request_handler.h"
-#include "die_with_error.h"
-#include "debug.h"
+#include "session/request/request_handler.h"
+#include "error/die_with_error.h"
+#include "debug/debug.h"
 
 #define MAXPENDING 5
 #define REQBUFSIZE 3000

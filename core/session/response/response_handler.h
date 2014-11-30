@@ -1,13 +1,13 @@
 #include <stdint.h>
-#include "http_request_parser.h"
+#include "request/http_request_parser.h"
 
 struct http_response {
     char* access_control_allow_origin;
     uint8_t accept_ranges;
     int age;
-    uint8_t allow[];
+    // uint8_t allow[];
     char* cache_control;
-    uint8_t connection[];
+    // uint8_t connection[];
     uint8_t content_encoding;
     uint8_t content_language;
     int content_length;
@@ -38,7 +38,7 @@ struct http_response {
     char* via;
     char* warning;
     uint8_t www_authenticate;
-    uint8_t x_frame_options[];
+    // uint8_t x_frame_options[];
 };
 
-void build_response(struct http_request* req, struct http_response *res);
+void build_response(struct http_request_parser *req, struct http_response* res);
