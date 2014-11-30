@@ -5,6 +5,7 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #include "response/response_handler.h"
 #include "error/die_with_error.h"

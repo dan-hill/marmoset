@@ -22,13 +22,12 @@ void handle_client(int client_socket) {
     build_response(&req, &res);
 
 
-
-
     /* Clear the send buffer */
     memset(send_buffer, 0, sizeof(send_buffer));
 
-    strcpy(send_buffer, "HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n\nI am responding!\n");
+    strcpy(send_buffer, res.content);
 
+    printf("%s", send_buffer);
     /* Sent the send buffer to the client */
     if (send(client_socket, send_buffer, REQBUFSIZE, 0) < 0)
         die_with_error("send() failed");

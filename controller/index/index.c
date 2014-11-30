@@ -2,10 +2,10 @@
 
 void index_handler(struct http_request_parser* req, struct http_response* res){
     if(req->type == REQ_TYPE_GET){
-        char* filename = "../../view/index.html";
+        printf("HEREHEHEHRHEHERHE");
         char * buffer = 0;
         long length;
-        FILE * f = fopen (filename, "rb");
+        FILE * f = fopen ("/home/dan/Development/marmoset/view/index.html", "rb");
 
         if (f)
         {
@@ -23,6 +23,10 @@ void index_handler(struct http_request_parser* req, struct http_response* res){
         if (buffer)
         {
             printf("%s", buffer);
+            res->content = buffer;
+            res->content_length = length;
         }
+
     }
+
 }
