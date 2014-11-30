@@ -1,7 +1,7 @@
 #include "index.h"
 
 void index_handler(struct http_request_parser* req, struct http_response* res){
-    if(req->type == REQ_TYPE_GET){
+    if(req->type == HTTP_GET){
         printf("HEREHEHEHRHEHERHE");
         char * buffer = 0;
         long length;

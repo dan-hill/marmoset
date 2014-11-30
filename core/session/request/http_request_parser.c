@@ -1,4 +1,3 @@
-
 #include "http_request_parser.h"
 
 
@@ -32,22 +31,22 @@ int store_header_field(struct http_request_parser * req, char* key, char* value)
 
         if(strcmp(value, "GET") == 0){
             printf("%s", value);
-            req->type = REQ_TYPE_GET;
+            req->type = HTTP_GET;
             return 1;
         }
 
         if(strcmp(value, "POST") == 0){
-            req->type = REQ_TYPE_POST;
+            req->type = HTTP_POST;
             return 1;
         }
 
         if(strcmp(value, "PUT") == 0){
-            req->type = REQ_TYPE_PUT;
+            req->type = HTTP_PUT;
             return 1;
         }
 
         if(strcmp(value, "DELETE") == 0){
-            req->type = REQ_TYPE_DELETE;
+            req->type = HTTP_DELETE;
             return 1;
         }
         /* TODO Add the rest of the less common request types */
