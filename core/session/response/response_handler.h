@@ -1,5 +1,9 @@
+#ifndef RESPONSE_HANDLER_H
+#define RESPONSE_HANDLER_H
+
 #include <stdint.h>
 #include "request/http_request_parser.h"
+#include <stdio.h>
 
 struct http_response {
     char* access_control_allow_origin;
@@ -39,6 +43,10 @@ struct http_response {
     char* warning;
     uint8_t www_authenticate;
     // uint8_t x_frame_options[];
+
+    char* content;
 };
 
 void build_response(struct http_request_parser *req, struct http_response* res);
+
+#endif

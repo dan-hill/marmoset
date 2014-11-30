@@ -1,14 +1,4 @@
-#include <string.h>
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#include "response/response_handler.h"
-#include "request/request_handler.h"
-#include "error/die_with_error.h"
-#include "debug/debug.h"
-
-#define REQBUFSIZE 3000
+#include "request_handler.h"
 
 void handle_client(int client_socket) {
 

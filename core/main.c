@@ -1,3 +1,4 @@
+
 #include <stdio.h>      /* printf(), fprintf() */
 #include <sys/socket.h> /* socket(), bind(), connect() */
 #include <arpa/inet.h>  /* sockaddr_in, inet_ntoa() */
@@ -5,9 +6,9 @@
 #include <string.h>     /* memset() */
 #include <unistd.h>     /* close() */
 
-#include "session/request/request_handler.h"
-#include "error/die_with_error.h"
 #include "debug/debug.h"
+#include "error/die_with_error.h"
+#include "request/request_handler.h"
 
 #define MAXPENDING 5
 #define REQBUFSIZE 3000
