@@ -2,7 +2,6 @@
 
 void index_handler(int* client_sd, struct http_request_parser* req, struct http_response* res){
     if(req->type == HTTP_GET){
-        printf("HEREHEHEHRHEHERHE");
         char * buffer = 0;
         long length;
         FILE * f = fopen ("/home/dan/Development/marmoset/view/index.html", "rb");
@@ -30,7 +29,6 @@ void index_handler(int* client_sd, struct http_request_parser* req, struct http_
     }
 
     if(req->type == HTTP_POST){
-        printf("here we are   |");
         abort_request(client_sd, HTTP_BAD_REQUEST, "Bad Request Mr. Facehole");
     }
 
