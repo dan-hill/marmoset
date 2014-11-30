@@ -1,14 +1,4 @@
-#include <string.h>
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 #include "request_handler.h"
-#include "die_with_error.h"
-#include "debug.h"
-#include "http_request_parser.h"
-
-#define REQBUFSIZE 3000
 
 void handle_client(int client_socket) {
 
@@ -28,14 +18,16 @@ void handle_client(int client_socket) {
     struct http_request_parser req;
     parse_request(&req, raw_req_buffer);
 
-
+    struct http_response res;
+    build_response(&req, &res);
 
 
     /* Clear the send buffer */
     memset(send_buffer, 0, sizeof(send_buffer));
 
-    strcpy(send_buffer, "HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n\nI am responding!\n");
+    strcpy(send_buffer, res.content);
 
+    printf("%s", send_buffer);
     /* Sent the send buffer to the client */
     if (send(client_socket, send_buffer, REQBUFSIZE, 0) < 0)
         die_with_error("send() failed");
