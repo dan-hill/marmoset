@@ -6,7 +6,8 @@
 #include "request_handler.h"
 #include "die_with_error.h"
 #include "debug.h"
-#include "http_request_parser.h"
+
+#include "response_handler.h"
 
 #define REQBUFSIZE 3000
 
@@ -27,6 +28,9 @@ void handle_client(int client_socket) {
     /* Parse the request so it can be handled by the responder */
     struct http_request_parser req;
     parse_request(&req, raw_req_buffer);
+
+    struct http_response res;
+    build_response(&req, &res);
 
 
 
