@@ -5,6 +5,7 @@
 #include "request/http_request_parser.h"
 #include <stdio.h>
 
+
 struct http_response {
     char* access_control_allow_origin;
     uint8_t accept_ranges;
@@ -46,6 +47,8 @@ struct http_response {
 
     char* content;
 };
+
+#include "routes.h"
 
 void build_response(struct http_request_parser *req, struct http_response* res);
 
