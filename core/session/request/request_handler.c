@@ -19,7 +19,6 @@ void handle_client(int client_socket) {
     parse_request(&req, raw_req_buffer);
 
     struct http_response res;
-    printf("%i", client_socket);
     build_response(&client_socket, &req, &res);
 
 
@@ -28,7 +27,6 @@ void handle_client(int client_socket) {
 
     strcpy(send_buffer, res.content);
 
-    printf("%s", send_buffer);
     /* Sent the send buffer to the client */
     if (send(client_socket, send_buffer, REQBUFSIZE, 0) < 0)
         die_with_error("send() failed");

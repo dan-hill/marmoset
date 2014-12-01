@@ -21,6 +21,7 @@ set(PROJECT_HEADERS
     controller/index/index.h
     core/error/abort.h
     core/session/response/serializer.h
+    core/session/mime_type.h
     )
 
 set(PROJECT_SOURCES
@@ -33,6 +34,7 @@ set(PROJECT_SOURCES
     controller/index/index.c
     core/error/abort.c
     core/session/response/serializer.c
+    core/session/mime_type.c
     )
 
 add_executable(marmoset core/main.c ${PROJECT_HEADERS} ${PROJECT_SOURCES})

@@ -1,3 +1,4 @@
+#include <session/mime_type.h>
 #include "serializer.h"
 
 void cats(char **str, const char *str2) {
@@ -30,7 +31,13 @@ char* serializer(struct http_response* res){
     char* response_string = "";
     cats(&response_string, "HTTP1/1 ");
     cats(&response_string, "200 OK \r\n");
-    cats(&response_string, "Content-Type: text/plain\r\n");
+
+    if(&res->content_type != NULL) {
+        cats(&response_string, "Content-Type: ");
+        cats(&response_string, mime_type_text(res->content_type));
+        cats(&response_string, "\r\n");
+    }
+
     cats(&response_string, "\r\n");
     cats(&response_string, res->content);
     return response_string;

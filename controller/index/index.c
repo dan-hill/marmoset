@@ -21,15 +21,14 @@ void index_handler(int* client_sd, struct http_request_parser* req, struct http_
 
         if (buffer)
         {
-            printf("%s", buffer);
             res->content = buffer;
             res->content_length = length;
+            res->content_type = MIME_TYPE_TEXT_PLAIN;
         }
 
+        return;
     }
 
-    if(req->type == HTTP_POST){
-        abort_request(client_sd, HTTP_BAD_REQUEST, "Bad Request Mr. Facehole");
-    }
+    abort_request(client_sd, HTTP_BAD_REQUEST, "Method not allowed");
 
 }
