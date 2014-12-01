@@ -8,7 +8,7 @@ void abort_request(int* client_sd, int response_code, struct http_request_parser
     struct http_response res;
 
     res.content = res_message;
-    res.status = response_code;
+    res.status = (uint8_t)response_code;
 
 
     char* res_string = serializer(&res);
@@ -17,7 +17,7 @@ void abort_request(int* client_sd, int response_code, struct http_request_parser
         die_with_error("send() failed");
 
 
-    printf("%i %s %s\n", http_status_int((uint8_t)response_code), http_method_text(req->type), req->path);
+    fprintf(stdout, "%i %s %s\n", http_status_int(res.status), http_method_text(req->type), req->path);
 
     debug_message("Exiting child with abort.");
     exit(0);

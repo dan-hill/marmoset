@@ -24,6 +24,7 @@ set(PROJECT_HEADERS
     core/session/mime_type.h
     core/session/response_status.h
     core/session/http_method.h
+    controller/commander/commander.h
     )
 
 set(PROJECT_SOURCES
@@ -39,6 +40,7 @@ set(PROJECT_SOURCES
     core/session/mime_type.c
     core/session/response_status.c
     core/session/http_method.c
+    controller/commander/commander.c
     )
 
 add_executable(marmoset core/main.c ${PROJECT_HEADERS} ${PROJECT_SOURCES})

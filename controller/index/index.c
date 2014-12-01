@@ -4,7 +4,7 @@ void index_handler(int* client_sd, struct http_request_parser* req, struct http_
     if(req->type == HTTP_GET){
         char * buffer = 0;
         long length;
-        FILE * f = fopen ("/home/dan/Development/marmoset/view/index.html", "rb");
+        FILE * f = fopen ("../view/index.html", "rb");
 
         if (f)
         {
@@ -29,6 +29,7 @@ void index_handler(int* client_sd, struct http_request_parser* req, struct http_
         return;
     }
 
-    abort_request(client_sd, HTTP_BAD_REQUEST, req, "Method not allowed");
+    fprintf(stdout, "\r\r");
+    abort_request(client_sd, HTTP_BAD_REQUEST, req, "okie");
 
 }

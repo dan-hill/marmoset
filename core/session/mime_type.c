@@ -8,5 +8,7 @@ char* mime_type_text(uint8_t mime_type){
             return "x-www-form-urlencoded";
         case MIME_TYPE_TEXT_PLAIN:
             return "text/plain";
+        case MIME_TYPE_TEXT_HTML:
+            return "text/html";
     }
 }

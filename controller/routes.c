@@ -6,6 +6,11 @@ void router(int* client_sd, struct http_request_parser* req, struct http_respons
         return;
     }
 
+    if(strcmp(req->path, "/commander") == 0){
+        commander_handler(client_sd, req, res);
+        return;
+    }
+
     abort_request(client_sd, HTTP_BAD_REQUEST, req, "No resource at this route.");
 }
 

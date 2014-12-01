@@ -18,6 +18,8 @@ void handle_client(int client_socket) {
     struct http_request_parser req;
     parse_request(&req, raw_req_buffer);
 
+
+
     struct http_response res;
     build_response(&client_socket, &req, &res);
 
