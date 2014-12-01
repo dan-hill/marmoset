@@ -12,7 +12,7 @@
 
 #define MAXPENDING 5
 #define REQBUFSIZE 30000
-#define DEBUGMSGS 1
+#define DEBUGMSGS 0
 
 
 int main(int argc, char *argv[]) {

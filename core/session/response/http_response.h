@@ -1,5 +1,5 @@
-#ifndef HTTP_REQUEST_H
-#define HTTP_REQUEST_H
+#ifndef HTTP_RESPONSE_H
+#define HTTP_RESPONSE_H
 
 #include <stdint.h>
 

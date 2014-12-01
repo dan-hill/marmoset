@@ -5,6 +5,8 @@
 #include "response/response_handler.h"
 #include "request/http_request_parser.h"
 
+#include "index/index.h"
+
 
 
 void router(int* client_sd, struct http_request_parser* req, struct http_response* res);

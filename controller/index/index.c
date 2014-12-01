@@ -29,6 +29,6 @@ void index_handler(int* client_sd, struct http_request_parser* req, struct http_
         return;
     }
 
-    abort_request(client_sd, HTTP_BAD_REQUEST, "Method not allowed");
+    abort_request(client_sd, HTTP_BAD_REQUEST, req, "Method not allowed");
 
 }

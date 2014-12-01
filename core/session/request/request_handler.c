@@ -31,6 +31,8 @@ void handle_client(int client_socket) {
     if (send(client_socket, send_buffer, REQBUFSIZE, 0) < 0)
         die_with_error("send() failed");
 
+    printf("%i %s %s\n", http_status_int(HTTP_OK), http_method_text(req.type), req.path);
+
     debug_message("Closing child.");
 
     close(client_socket);
