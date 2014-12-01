@@ -1,11 +1,10 @@
 #include "index.h"
 
-void index_handler(struct http_request_parser* req, struct http_response* res){
+void index_handler(int* client_sd, struct http_request_parser* req, struct http_response* res){
     if(req->type == HTTP_GET){
-        printf("HEREHEHEHRHEHERHE");
         char * buffer = 0;
         long length;
-        FILE * f = fopen ("/home/dan/Development/marmoset/view/index.html", "rb");
+        FILE * f = fopen ("../view/index.html", "rb");
 
         if (f)
         {
@@ -22,11 +21,15 @@ void index_handler(struct http_request_parser* req, struct http_response* res){
 
         if (buffer)
         {
-            printf("%s", buffer);
             res->content = buffer;
             res->content_length = length;
+            res->content_type = MIME_TYPE_TEXT_PLAIN;
         }
 
+        return;
     }
+
+    fprintf(stdout, "\r\r");
+    abort_request(client_sd, HTTP_BAD_REQUEST, req, "okie");
 
 }

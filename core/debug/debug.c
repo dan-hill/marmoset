@@ -2,7 +2,7 @@
 #include "debug.h"
 #include <unistd.h>
 
-#define DEBUGMSGS 1
+#define DEBUGMSGS 0
 
 void debug_message(char *message) {
     if (DEBUGMSGS == 1) {

@@ -19,6 +19,12 @@ set(PROJECT_HEADERS
     core/session/response/response_handler.h
     controller/routes.h
     controller/index/index.h
+    core/error/abort.h
+    core/session/response/serializer.h
+    core/session/mime_type.h
+    core/session/response_status.h
+    core/session/http_method.h
+    controller/commander/commander.h
     )
 
 set(PROJECT_SOURCES
@@ -29,6 +35,12 @@ set(PROJECT_SOURCES
     core/session/response/response_handler.c
     controller/routes.c
     controller/index/index.c
+    core/error/abort.c
+    core/session/response/serializer.c
+    core/session/mime_type.c
+    core/session/response_status.c
+    core/session/http_method.c
+    controller/commander/commander.c
     )
 
 add_executable(marmoset core/main.c ${PROJECT_HEADERS} ${PROJECT_SOURCES})

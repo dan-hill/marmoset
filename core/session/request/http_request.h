@@ -1,3 +1,6 @@
+#ifndef HTTP_REQUEST_H
+#define HTTP_REQUEST_H
+
 struct http_request_parser {
     uint8_t type;               /* Supported */
     char* path;                 /* Supported */
@@ -34,3 +37,5 @@ struct http_request_parser {
     char* via;                  /* Not Supported */
     char* warning;              /* Not Supported */
 };
+
+#endif

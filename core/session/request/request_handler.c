@@ -18,8 +18,10 @@ void handle_client(int client_socket) {
     struct http_request_parser req;
     parse_request(&req, raw_req_buffer);
 
+
+
     struct http_response res;
-    build_response(&req, &res);
+    build_response(&client_socket, &req, &res);
 
 
     /* Clear the send buffer */
@@ -27,10 +29,11 @@ void handle_client(int client_socket) {
 
     strcpy(send_buffer, res.content);
 
-    printf("%s", send_buffer);
     /* Sent the send buffer to the client */
     if (send(client_socket, send_buffer, REQBUFSIZE, 0) < 0)
         die_with_error("send() failed");
+
+    printf("%i %s %s\n", http_status_int(HTTP_OK), http_method_text(req.type), req.path);
 
     debug_message("Closing child.");
 

@@ -30,7 +30,6 @@ int store_header_field(struct http_request_parser * req, char* key, char* value)
     if(strcmp(key, "Type") == 0){
 
         if(strcmp(value, "GET") == 0){
-            printf("%s", value);
             req->type = HTTP_GET;
             return 1;
         }
@@ -95,6 +94,7 @@ void parse_request(struct http_request_parser * req, char *request){
         if(strlen(token) == 0){
             token = strsep(&runner, "\r");
             store_header_field(req, "Body", token);
+
             break;
         }
 
