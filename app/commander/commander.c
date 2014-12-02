@@ -1,7 +1,8 @@
-#include "commander.h"
+
+/*#include "commander.h"
 
 
-void commander_handler(int* client_sd, struct http_request_parser* req, struct http_response* res){
+void commander_handler(int* client_sd, struct http_request * req, struct http_response* res){
     if(req->type == HTTP_GET){
         char * buffer = 0;
         long length;
@@ -30,7 +31,7 @@ void commander_handler(int* client_sd, struct http_request_parser* req, struct h
         return;
     }
 
-    if(req->type == HTTP_POST){
+    if(*req->type == HTTP_POST){
         req->body = req->body + 9;
 
         char* space;
@@ -66,4 +67,4 @@ void commander_handler(int* client_sd, struct http_request_parser* req, struct h
     fprintf(stdout, "\r\r");
     abort_request(client_sd, HTTP_BAD_REQUEST, req, "okie");
 
-}
+}*/

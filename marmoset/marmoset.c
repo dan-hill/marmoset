@@ -8,16 +8,15 @@
 
 #include "debug/debug.h"
 #include "error/die_with_error.h"
-#include "request_handler.h"
+#include "app_m.h"
 
 #define MAXPENDING 5
 #define REQBUFSIZE 30000
 #define DEBUGMSGS 0
 
 
-int main(int argc, char *argv[]) {
-
-    debug_message("Starting server setup.");
+void run(int port){
+    printf("Starting marmoset...\n");
 
     int server_sd;                          /* Socket descriptor for server */
     int client_sd;                          /* Socket descriptor for client */
@@ -26,13 +25,8 @@ int main(int argc, char *argv[]) {
     unsigned short server_port;             /* Server port */
     unsigned int client_address_length;     /* Length of client address data structure */
 
-    /* Test for correct number of arguments */
-    if (argc != 2) {
-        fprintf(stderr, "Usage:  %s <Server Port>\n", argv[0]);
-        exit(1);
-    }
 
-    server_port = (unsigned short) atoi(argv[1]);       /* The server port to be opened */
+    server_port = (unsigned short) port;       /* The server port to be opened */
 
     /* Create socket for incoming connections */
     debug_message("Creating socket for incomming connections...");
@@ -78,7 +72,7 @@ int main(int argc, char *argv[]) {
         int pid = fork();
         if (pid == 0) {
             debug_message("Handling request in child process.");
-            handle_client(client_sd);
+            app(client_sd);
         }
 
         debug_message("Closing client socket in main thread.");
