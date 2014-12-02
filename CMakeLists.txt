@@ -14,13 +14,13 @@ include_directories(
 set(PROJECT_HEADERS
     core/debug/debug.h
     core/error/die_with_error.h
-    core/session/request/http_request_parser.h
-    core/session/request/request_handler.h
-    core/session/response/response_handler.h
+    core/session/http_serialize.h
+    core/session/request_handler.h
+    core/session/response_handler.h
     controller/routes.h
     controller/index/index.h
     core/error/abort.h
-    core/session/response/serializer.h
+    core/session/serializer.h
     core/session/mime_type.h
     core/session/response_status.h
     core/session/http_method.h
@@ -30,13 +30,13 @@ set(PROJECT_HEADERS
 set(PROJECT_SOURCES
     core/debug/debug.c
     core/error/die_with_error.c
-    core/session/request/http_request_parser.c
-    core/session/request/request_handler.c
-    core/session/response/response_handler.c
+    core/session/http_serialize.c
+    core/session/request_handler.c
+    core/session/response_handler.c
     controller/routes.c
     controller/index/index.c
     core/error/abort.c
-    core/session/response/serializer.c
+    core/session/serializer.c
     core/session/mime_type.c
     core/session/response_status.c
     core/session/http_method.c

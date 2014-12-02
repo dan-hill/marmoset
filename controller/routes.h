@@ -2,8 +2,8 @@
 #define ROUTES_H
 
 
-#include "response/response_handler.h"
-#include "request/http_request_parser.h"
+#include "response_handler.h"
+#include "http_serialize.h"
 
 #include "index/index.h"
 #include "commander/commander.h"

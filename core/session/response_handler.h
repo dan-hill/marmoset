@@ -2,7 +2,7 @@
 #define RESPONSE_HANDLER_H
 
 #include <stdint.h>
-#include "request/http_request_parser.h"
+#include "http_serialize.h"
 #include <stdio.h>
 #include "http_response.h"
 #include "routes.h"

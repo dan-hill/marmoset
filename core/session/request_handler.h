@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include "response/response_handler.h"
+#include "response_handler.h"
 #include "error/die_with_error.h"
 #include "debug/debug.h"
 
