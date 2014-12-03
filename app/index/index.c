@@ -1,7 +1,10 @@
+
 #include "index.h"
 
-void index_handler(int* client_sd, struct http_request_parser* req, struct http_response* res){
-    if(req->type == HTTP_GET){
+struct http_response* index_handler(struct http_request * req){
+    struct http_response* res = (struct http_response *) malloc(sizeof(struct http_response));
+
+    if(*req->type == HTTP_GET){
         char * buffer = 0;
         long length;
         FILE * f = fopen ("../view/index.html", "rb");
@@ -22,14 +25,13 @@ void index_handler(int* client_sd, struct http_request_parser* req, struct http_
         if (buffer)
         {
             res->content = buffer;
-            res->content_length = length;
-            res->content_type = MIME_TYPE_TEXT_PLAIN;
+            res->content_type = MIME_TYPE_TEXT_HTML;
         }
 
-        return;
+        return respond(HTTP_OK, res);
     }
 
-    fprintf(stdout, "\r\r");
-    abort_request(client_sd, HTTP_BAD_REQUEST, req, "okie");
+
+    return abort_request(HTTP_BAD_REQUEST, "Method not allowed.");
 
 }

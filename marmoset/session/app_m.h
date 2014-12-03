@@ -7,12 +7,11 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include "response/response_handler.h"
 #include "error/die_with_error.h"
 #include "debug/debug.h"
 
 #define REQBUFSIZE 30000
 
-void handle_client(int client_socket);
+void app(int client_socket);
 
 #endif

@@ -2,6 +2,7 @@
 #define HTTP_METHOD_H
 
 #include <stdint.h>
+#include <string.h>
 
 /* Request types */
 #define HTTP_GET 0
@@ -13,6 +14,6 @@
 #define HTTP_TRACE 6
 #define HTTP_CONNECT 7
 
-char *http_method_text(uint8_t status);
-
+char *http_method_text(uint8_t* status);
+uint8_t *http_method_macro(char *method_str);
 #endif
