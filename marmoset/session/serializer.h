@@ -14,4 +14,5 @@ char* serialize_response(struct http_response *res);
 struct http_response* deserialize_response(char* res_str);
 char* serialize_request(struct http_request *req);
 struct http_request* deserialize_request(char* req);
+void cats(char **str, const char *str2);
 #endif

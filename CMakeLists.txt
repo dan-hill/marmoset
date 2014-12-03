@@ -21,7 +21,6 @@ set(PROJECT_HEADERS
     marmoset/session/mime_type.h
     marmoset/session/response_status.h
     marmoset/session/http_method.h
-    app/commander/commander.h
     marmoset/session/http_request.h
     marmoset/session/serializer.h
     marmoset/marmoset.h
@@ -39,7 +38,6 @@ set(PROJECT_SOURCES
     marmoset/session/mime_type.c
     marmoset/session/response_status.c
     marmoset/session/http_method.c
-    app/commander/commander.c
     marmoset/session/serializer.c
     marmoset/marmoset.c
     marmoset/session/respond.c
