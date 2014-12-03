@@ -5,11 +5,10 @@ struct http_response* route(struct http_request * req){
         return index_handler(req);
     }
 
-    /*
-    if(strcmp(req->path, "/commander") == 0){
-        return commander_handler(req);
+    if(strcmp(req->path, "/hardware") == 0){
+        return hardware_handler(req);
     }
-    */
+
 
     return abort_request(HTTP_BAD_REQUEST, "No resource at this route.");
 }

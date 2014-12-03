@@ -25,7 +25,7 @@ struct http_response* index_handler(struct http_request * req){
         if (buffer)
         {
             res->content = buffer;
-            res->content_type = MIME_TYPE_TEXT_PLAIN;
+            res->content_type = MIME_TYPE_TEXT_HTML;
         }
 
         return respond(HTTP_OK, res);

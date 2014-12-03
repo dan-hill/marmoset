@@ -1,4 +1,4 @@
-
+#include <signal.h>
 #include <stdio.h>      /* printf(), fprintf() */
 #include <sys/socket.h> /* socket(), bind(), connect() */
 #include <arpa/inet.h>  /* sockaddr_in, inet_ntoa() */
@@ -17,6 +17,8 @@
 
 void run(int port){
     printf("Starting marmoset...\n");
+
+    signal(SIGCHLD, SIG_IGN);
 
     int server_sd;                          /* Socket descriptor for server */
     int client_sd;                          /* Socket descriptor for client */

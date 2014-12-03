@@ -30,7 +30,7 @@ void cats(char **str, const char *str2) {
 char*serialize_response(struct http_response *res){
     char* response_string = "";
 
-    cats(&response_string, "HTTP1/1 ");
+    cats(&response_string, "HTTP/1.1 ");
     if(&res->status != NULL) {
         cats(&response_string, http_status_text(res->status));
     }
