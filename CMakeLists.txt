@@ -12,35 +12,35 @@ include_directories(
     )
 
 set(PROJECT_HEADERS
-    marmoset/debug/debug.h
-    marmoset/error/die_with_error.h
-    marmoset/session/app_m.h
+    marmoset/debug.h
+    marmoset/die_with_error.h
+    marmoset/app_m.h
     app/app.h
     app/index/index.h
-    marmoset/error/abort.h
-    marmoset/session/mime_type.h
-    marmoset/session/response_status.h
-    marmoset/session/http_method.h
-    marmoset/session/http_request.h
-    marmoset/session/serializer.h
+    marmoset/abort.h
+    marmoset/mime_type.h
+    marmoset/response_status.h
+    marmoset/http_method.h
+    marmoset/http_request.h
+    marmoset/serializer.h
     marmoset/marmoset.h
-    marmoset/session/respond.h
+    marmoset/respond.h
     app/hardware/hardware.h
     )
 
 set(PROJECT_SOURCES
     app/app.c
-    marmoset/debug/debug.c
-    marmoset/error/die_with_error.c
-    marmoset/session/app_m.c
+    marmoset/debug.c
+    marmoset/die_with_error.c
+    marmoset/app_m.c
     app/index/index.c
-    marmoset/error/abort.c
-    marmoset/session/mime_type.c
-    marmoset/session/response_status.c
-    marmoset/session/http_method.c
-    marmoset/session/serializer.c
+    marmoset/abort.c
+    marmoset/mime_type.c
+    marmoset/response_status.c
+    marmoset/http_method.c
+    marmoset/serializer.c
     marmoset/marmoset.c
-    marmoset/session/respond.c
+    marmoset/respond.c
     app/hardware/hardware.c
     )
 

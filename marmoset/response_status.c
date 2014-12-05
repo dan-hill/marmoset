@@ -1,4 +1,4 @@
-#include "session/response_status.h"
+#include "response_status.h"
 
 char *http_status_text(uint8_t status) {
     switch(status){

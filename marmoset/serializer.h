@@ -4,10 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "http_response.h"
 #include "http_request.h"
-#include "session/mime_type.h"
-#include <session/response_status.h>
+#include "mime_type.h"
+#include "response_status.h"
 #include "http_method.h"
 
 char* serialize_response(struct http_response *res);

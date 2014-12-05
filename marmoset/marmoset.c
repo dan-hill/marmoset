@@ -1,24 +1,9 @@
-#include <signal.h>
-#include <stdio.h>      /* printf(), fprintf() */
-#include <sys/socket.h> /* socket(), bind(), connect() */
-#include <arpa/inet.h>  /* sockaddr_in, inet_ntoa() */
-#include <stdlib.h>     /* atoi(), exit() */
-#include <string.h>     /* memset() */
-#include <unistd.h>     /* close() */
-
-#include "debug/debug.h"
-#include "error/die_with_error.h"
-#include "app_m.h"
-
-#define MAXPENDING 5
-#define REQBUFSIZE 30000
-#define DEBUGMSGS 0
-
+#include "marmoset.h"
 
 void run(int port){
     printf("Starting marmoset...\n");
 
-    signal(SIGCHLD, SIG_IGN);
+    signal(SIGCHLD, SIG_IGN);               /* Let the kernel handle defunct processes */
 
     int server_sd;                          /* Socket descriptor for server */
     int client_sd;                          /* Socket descriptor for client */
@@ -38,9 +23,9 @@ void run(int port){
     /* Construct local address structure */
     debug_message("Constructing local address structure...");
     memset(&server_address, 0, sizeof(server_address));     /* Clear the server_address structure */
-    server_address.sin_family = AF_INET;              /* Internet protocol family */
-    server_address.sin_addr.s_addr = htonl(INADDR_ANY);    /* Any incoming interface */
-    server_address.sin_port = htons(server_port);   /* Local port */
+    server_address.sin_family = AF_INET;                    /* Internet protocol family */
+    server_address.sin_addr.s_addr = htonl(INADDR_ANY);     /* Any incoming interface */
+    server_address.sin_port = htons(server_port);           /* Local port */
 
     /* Bind to the local address */
     debug_message("Binding socket to the local address...");
@@ -54,8 +39,6 @@ void run(int port){
 
     if (listen(server_sd, MAXPENDING) < 0)
         die_with_error("listen() failed");
-
-    debug_message("End server setup.\n");
 
     debug_message("Start main application loop.");
     #pragma clang diagnostic push

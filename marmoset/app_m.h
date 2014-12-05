@@ -7,8 +7,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
-#include "error/die_with_error.h"
-#include "debug/debug.h"
+#include "die_with_error.h"
+#include "debug.h"
 
 #define REQBUFSIZE 30000
 

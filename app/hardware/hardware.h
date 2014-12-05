@@ -2,7 +2,7 @@
 #define HARDWARE_H
 
 #include "serializer.h"
-#include "error/abort.h"
+#include "abort.h"
 #include "http_response.h"
 #include "http_request.h"
 #include "app.h"
