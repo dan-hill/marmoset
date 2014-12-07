@@ -1,11 +1,10 @@
-#include <stdlib.h>
 #include "http_method.h"
 
-char *http_method_text(uint8_t *status) {
+char *http_method_text(uint8_t *method) {
 
-    /* TODO add the remaining method cases. */
+    /** @todo Add the remaining method to string conversion cases. */
 
-    switch(*status){
+    switch(*method){
         case HTTP_GET:
             return "GET";
         case HTTP_POST:
@@ -16,8 +15,8 @@ char *http_method_text(uint8_t *status) {
 }
 
 uint8_t *http_method_macro(char *method_str){
+    /** @todo Add macros for all HTTP methods. */
 
-    /* TODO add the rest of the method macros. */
     uint8_t *mptr = (uint8_t *) malloc(sizeof(uint8_t));
 
     if(strcmp(method_str, "GET") == 0){

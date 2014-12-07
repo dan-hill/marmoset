@@ -1,22 +1,21 @@
 
 #include "serializer.h"
 
-void cats(char **str, const char *str2) {
+void cats(char **str, const char *str2)
+{
     char *tmp = NULL;
 
-    // Reset *str
     if ( *str != NULL && str2 == NULL ) {
         free(*str);
         *str = NULL;
         return;
     }
 
-    // Initial copy
     if (*str == NULL) {
         *str = calloc( strlen(str2)+1, sizeof(char) );
         memcpy( *str, str2, strlen(str2) );
     }
-    else { // Append
+    else {
         tmp = calloc( strlen(*str)+1, sizeof(char) );
         memcpy( tmp, *str, strlen(*str) );
         *str = calloc( strlen(*str)+strlen(str2)+1, sizeof(char) );
@@ -25,9 +24,10 @@ void cats(char **str, const char *str2) {
         free(tmp);
     }
 
-} // cats
+}
 
-char*serialize_response(struct http_response *res){
+char*serialize_response(struct http_response *res)
+{
     char* response_string = "";
 
     cats(&response_string, "HTTP/1.1 ");
@@ -47,12 +47,8 @@ char*serialize_response(struct http_response *res){
     return response_string;
 }
 
-struct http_response* deserialize_response(char* res_str){
-
-}
-
-
-struct http_request* deserialize_request(char* req_str){
+struct http_request* deserialize_request(char* req_str)
+{
 
     struct http_request *req = (struct http_request*)malloc(sizeof(struct http_request));
 

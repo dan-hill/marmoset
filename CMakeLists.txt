@@ -25,7 +25,6 @@ set(PROJECT_HEADERS
     marmoset/serializer.h
     marmoset/marmoset.h
     marmoset/respond.h
-    app/hardware/hardware.h
     )
 
 set(PROJECT_SOURCES
@@ -41,7 +40,6 @@ set(PROJECT_SOURCES
     marmoset/serializer.c
     marmoset/marmoset.c
     marmoset/respond.c
-    app/hardware/hardware.c
     )
 
 add_executable(app app/app.c ${PROJECT_HEADERS} ${PROJECT_SOURCES})

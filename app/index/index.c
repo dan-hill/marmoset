@@ -1,7 +1,8 @@
 
 #include "index.h"
 
-struct http_response* index_handler(struct http_request * req){
+struct http_response* index_handler(struct http_request * req)
+{
     struct http_response* res = (struct http_response *) malloc(sizeof(struct http_response));
 
     if(*req->type == HTTP_GET){
@@ -31,7 +32,5 @@ struct http_response* index_handler(struct http_request * req){
         return respond(HTTP_OK, res);
     }
 
-
     return abort_request(HTTP_BAD_REQUEST, "Method not allowed.");
-
 }

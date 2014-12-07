@@ -1,6 +1,8 @@
 #include "mime_type.h"
 
 char* mime_type_text(uint8_t mime_type){
+    /** @todo Add the full list of mime types to the macro list */
+
     switch(mime_type){
         case MIME_TYPE_APPLICATION_JSON:
             return "application/json";
